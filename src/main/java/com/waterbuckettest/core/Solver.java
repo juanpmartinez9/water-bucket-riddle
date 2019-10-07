@@ -5,7 +5,7 @@ import com.waterbuckettest.math.Mathematics;
 public class Solver {
 
     /**
-     * Solves the Water Jug Riddle and returns an outcome.
+     * Solves actions and states of the riddle and returns an outcome.
      *
      * @param fromCap size of bucket from which water is poured
      * @param toCap f bucket to which water is poured
@@ -17,47 +17,28 @@ public class Solver {
         // in source and destination bucket
         int from= 0;
         int to = 0;
-        BucketState bs;
-        RiddleSolution rs = new WaterBucketRiddleSolution();
 
+        RiddleSolution solution = new WaterBucketRiddleSolution();
 
         // Buckets start empty
-        bs = new BucketState();
-        rs.getActions().add("\nInitial State");
-        bs.setBucketX(to);
-        bs.setBucketY(from);
-        rs.getStates().add(bs);
+        solution.addStep("\nInitial State", from, to);
 
+        // Add first step
         from = fromCap;
-        // Add action
-        rs.getActions().add("Refill       ");
-        // Add state
-        bs = new BucketState();
-        bs.setBucketX(to);
-        bs.setBucketY(from);
-        rs.getStates().add(bs);
+        solution.addStep("Fill         ",from, to);
 
         // Break the loop when either of the two
-        // bucket has d litre water
+        // bucket has z gallon water
         while (from != z && to != z){
-            // Find the maximum amount that can be
-            // poured
+            // Find the maximum amount that can be poured
             int temp = Math.min(from, toCap - to);
 
-            // Pour "temp" litres from "from" to "to"
+            // Transfer "temp" litres from "from" to "to"
             to   += temp;
             from -= temp;
 
-
-            // Add action
-            rs.getActions().add("Transfer     ");
-            // Add state
-            bs = new BucketState();
-            bs.setBucketX(to);
-            bs.setBucketY(from);
-            rs.getStates().add(bs);
-
-
+            // Add transfer step
+            solution.addStep("Transfer     ",from, to);
 
             if (from == z || to == z)
                 break;
@@ -65,35 +46,20 @@ public class Solver {
             // If first bucket becomes empty, fill it
             if (from == 0) {
                 from = fromCap;
-
-                // Add action
-                rs.getActions().add("Refill       ");
-                // Add state
-                bs = new BucketState();
-                bs.setBucketX(to);
-                bs.setBucketY(from);
-                rs.getStates().add(bs);
+                solution.addStep("Fill         ",from, to);
             }
 
-            // If second bucket becomes full, empty it
+            // If second bucket becomes full, dump it
             if (to == toCap) {
                 to = 0;
-
-                // Add action
-                rs.getActions().add("Empty        ");
-                // Add state
-                bs = new BucketState();
-                bs.setBucketX(to);
-                bs.setBucketY(from);
-                rs.getStates().add(bs);
-
+                solution.addStep("Dump         ",from, to);
             }
         }
-        return rs;
+        return solution;
     }
 
     /**
-     * Solves the Water Jug Riddle and returns an outcome.
+     * Solves the Water Bucket Riddle and returns an outcome.
      *
      * @param x the size of the first bucket.
      * @param y the size of the second bucket.
@@ -110,10 +76,9 @@ public class Solver {
 
         // If gcd of x and y does not divide z
         // then solution is not possible
-        if ((z % Mathematics.gcd(y, x)) != 0){
+        if (Mathematics.isMultiple(x,y,z)){
             return new NoSolution("Measure Z is not multiple of gcd(BucketX, BucketY).\n");
         }
-
 
         // Get the minimum number of steps with two cases:
         // a) Water of x gallon bucket is poured into y gallon bucket

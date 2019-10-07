@@ -16,4 +16,5 @@ public abstract class RiddleSolution implements Solution {
     @Override
     public abstract int getSteps();
 
+    abstract void addStep(String action, int from, int to);
 }
