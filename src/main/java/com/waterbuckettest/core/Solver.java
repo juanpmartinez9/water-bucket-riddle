@@ -71,13 +71,13 @@ public class Solver {
         //If amount of water to be measured is bigger than the size of the two buckets
         // then solution is not possible
         if (z > Math.max(x, y)) {
-            return new NoSolution("Measure z is greater than max(BucketX, BucketY).\n");
+            return new NoSolution("\nMeasure z is greater than max(BucketX, BucketY).\n");
         }
 
         // If gcd of x and y does not divide z
         // then solution is not possible
         if (Mathematics.isMultiple(x,y,z)){
-            return new NoSolution("Measure Z is not multiple of gcd(BucketX, BucketY).\n");
+            return new NoSolution("\nMeasure Z is not multiple of gcd(BucketX, BucketY).\n");
         }
 
         // Get the minimum number of steps with two cases:
