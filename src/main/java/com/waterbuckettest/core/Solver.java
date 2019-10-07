@@ -12,13 +12,13 @@ public class Solver {
      * @param z the amount of water to be measured.
      * @return the solution of the riddle.
      */
-    private RiddleSolution solve(int fromCap, int toCap, int z){
+    private Solution solve(int fromCap, int toCap, int z){
         // Initialize current amount of water
         // in source and destination bucket
         int from= 0;
         int to = 0;
         BucketState bs;
-        RiddleSolution rs = new Solution();
+        RiddleSolution rs = new WaterBucketRiddleSolution();
 
 
         // Buckets start empty
@@ -100,28 +100,26 @@ public class Solver {
      * @param z the amount of water to be measured.
      * @return the solution of the riddle.
      */
-    public RiddleSolution solveRiddle(int x, int y, int z) {
+    public Solution solveRiddle(int x, int y, int z) {
 
-
+        //If amount of water to be measured is bigger than the size of the two buckets
+        // then solution is not possible
         if (z > Math.max(x, y)) {
-            System.out.println("Measure z is greater than max(BucketX, BucketY).\n");
-            return new NoSolution();
+            return new NoSolution("Measure z is greater than max(BucketX, BucketY).\n");
         }
-
 
         // If gcd of x and y does not divide z
         // then solution is not possible
         if ((z % Mathematics.gcd(y, x)) != 0){
-            System.out.println("Measure Z is not multiple of gcd(BucketX, BucketY).\n");
-            return new NoSolution();
+            return new NoSolution("Measure Z is not multiple of gcd(BucketX, BucketY).\n");
         }
 
 
         // Get the minimum number of steps with two cases:
         // a) Water of x gallon bucket is poured into y gallon bucket
         // b) Vice versa of "a"
-        RiddleSolution solution1 = solve(y,x,z);
-        RiddleSolution solution2 = solve(x,y,z);
+        Solution solution1 = solve(y,x,z);
+        Solution solution2 = solve(x,y,z);
 
         // Case with min number of steps returns solution
         if(Math.min(solution1.getSteps(),solution2.getSteps()) == solution1.getSteps()) {

@@ -2,12 +2,18 @@ package com.waterbuckettest.core;
 
 import java.util.Collection;
 
-public interface RiddleSolution {
+public abstract class RiddleSolution implements Solution {
 
-    int getSteps();
+    //Actions for solving riddle
+    Collection<String> actions;
+    //States of each bucket during process
+    Collection<BucketState> states;
 
-    Collection<String> getActions();
+    abstract Collection<String> getActions();
 
-    Collection<BucketState> getStates();
+    abstract Collection<BucketState> getStates();
+
+    @Override
+    public abstract int getSteps();
 
 }

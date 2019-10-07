@@ -11,4 +11,10 @@ final class CliConstants {
     static final String RE_ENTER = "Re enter value please";
 
     static final String RUN_AGAIN = "Run again? [y/n] \n";
+
+    static final String BUCKET_X = "Enter capacity bucket X: \n";
+
+    static final String BUCKET_Y = "Enter capacity bucket Y: \n";
+
+    static final String AMOUNT_Z = "Enter amount Z of gallons: \n";
 }

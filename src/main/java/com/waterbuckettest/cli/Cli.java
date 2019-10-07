@@ -1,9 +1,6 @@
 package com.waterbuckettest.cli;
 
-import com.waterbuckettest.core.BucketState;
-import com.waterbuckettest.core.RiddleEntry;
-import com.waterbuckettest.core.RiddleSolution;
-import com.waterbuckettest.core.Solver;
+import com.waterbuckettest.core.*;
 
 import java.util.Iterator;
 import java.util.Scanner;
@@ -11,11 +8,10 @@ import java.util.Scanner;
 class Cli {
 
     Cli(){
-
         welcome();
         printInstructions();
         RiddleEntry parameters = inputParameters();
-        RiddleSolution solution = new Solver().solveRiddle(parameters.getBucket1(),parameters.getBucket2(),parameters.getMeasure());
+        Solution solution = new Solver().solveRiddle(parameters.getBucket1(),parameters.getBucket2(),parameters.getMeasure());
         displaySolution(solution);
         reRun();
     }
@@ -32,15 +28,15 @@ class Cli {
 
         RiddleEntry parameters = new RiddleEntry();
         //Capacity bucket X
-        System.out.print("Enter capacity bucket X: \n");
+        System.out.print(CliConstants.BUCKET_X);
         parameters.setBucket1(inputPositiveInputParameter());
 
         //Capacity bucket Y
-        System.out.print("Enter capacity bucket Y: \n");
+        System.out.print(CliConstants.BUCKET_Y);
         parameters.setBucket2(inputPositiveInputParameter());
 
         //Amount of gallons to get
-        System.out.print("Enter amount Z of gallons: \n");
+        System.out.print(CliConstants.AMOUNT_Z);
         parameters.setMeasure(inputPositiveInputParameter());
 
         return parameters;
@@ -63,13 +59,14 @@ class Cli {
         }
     }
 
-    private void displaySolution(RiddleSolution solution){
+    private void displaySolution(Solution solution){
 
-        if(solution == null)
-            System.out.println("No solution for this input.\n");
+        System.out.println("\n---- Solution ----");
+        if(solution.getSteps() == 0)
+            System.out.println(((NoSolution) solution).getErrorMessage());
         else {
-            Iterator<String> actionsIterator = solution.getActions().iterator();
-            Iterator<BucketState> statesIterator = solution.getStates().iterator();
+            Iterator<String> actionsIterator = ((WaterBucketRiddleSolution)solution).getActions().iterator();
+            Iterator<BucketState> statesIterator = ((WaterBucketRiddleSolution)solution).getStates().iterator();
             BucketState bs;
             while (actionsIterator.hasNext() && statesIterator.hasNext()) {
                 System.out.print(actionsIterator.next() + " -> ");

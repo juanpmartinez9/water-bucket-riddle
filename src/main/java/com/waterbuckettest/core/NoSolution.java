@@ -1,21 +1,19 @@
 package com.waterbuckettest.core;
 
-import java.util.Collection;
+public final class NoSolution implements Solution {
 
-public final class NoSolution implements RiddleSolution {
+    private String errorMessage;
+
+    NoSolution(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     @Override
     public int getSteps() {
         return 0;
     }
 
-    @Override
-    public Collection<String> getActions() {
-        return null;
-    }
-
-    @Override
-    public Collection<BucketState> getStates() {
-        return null;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }
