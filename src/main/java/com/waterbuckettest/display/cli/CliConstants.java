@@ -1,4 +1,4 @@
-package com.waterbuckettest.cli;
+package com.waterbuckettest.display.cli;
 
 final class CliConstants {
 
@@ -8,7 +8,7 @@ final class CliConstants {
             "Assume lake has unlimited amount of water.\n" +
             "By using only an X-gallon and Y-gallon bucket (no third bucket), measure Z gallons of water.\n";
 
-    static final String RE_ENTER = "Re enter value please";
+    static final String RE_ENTER = "Invalid Value. Please enter a valid value.\n";
 
     static final String RUN_AGAIN = "Run again? [y/n] \n";
 
@@ -17,4 +17,6 @@ final class CliConstants {
     static final String BUCKET_Y = "Enter capacity bucket Y: \n";
 
     static final String AMOUNT_Z = "Enter amount Z of gallons: \n";
+
+    static final String SOLUTION = "\n---- Solution ----\n";
 }

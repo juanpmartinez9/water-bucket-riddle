@@ -7,27 +7,27 @@ class SolverTest {
 
     @Test
     void testSolveRiddleActions() {
-        Solution solution = new Solver().solveRiddle(5,4,3);
-        final String[] input = new String[] { "\nInitial State", "Fill         ","Transfer     ","Fill         ","Transfer     " };
-        Assertions.assertArrayEquals(((WaterBucketRiddleSolution)solution).getActions().toArray(), input);
+        RiddleSolution solution = new Solver().solveRiddle(5,4,3);
+        final Action[] input = new Action[] { Action.INITIAL_STATE, Action.FILL, Action.TRANSFER, Action.FILL, Action.TRANSFER};
+        Assertions.assertArrayEquals(solution.getActions().toArray(), input);
     }
 
     @Test
     void testSolvedRiddleError() {
-        Solution solution = new Solver().solveRiddle(5,4,3);
-        final String[] input = new String[] { "\nInitial State", "Transfer     ","Fill         ","Transfer     " };
-        Assertions.assertNotEquals(((WaterBucketRiddleSolution)solution).getActions().toArray(), input);
+        RiddleSolution solution = new Solver().solveRiddle(5,4,3);
+        final Action[] input = new Action[] { Action.INITIAL_STATE, Action.TRANSFER, Action.FILL, Action.TRANSFER};
+        Assertions.assertNotEquals(solution.getActions().toArray(), input);
     }
 
     @Test
     void testMeasureBiggerThanXandY() {
-        Solution solution = new Solver().solveRiddle(5,4,8);
-        Assertions.assertEquals((solution).getSteps(), 0);
+        RiddleSolution solution = new Solver().solveRiddle(5,4,8);
+        Assertions.assertEquals(solution.getSteps(), 0);
     }
 
     @Test
     void testNoSolutionGCD() {
-        Solution solution = new Solver().solveRiddle(10,20,19);
-        Assertions.assertEquals((solution).getSteps(), 0);
+        RiddleSolution solution = new Solver().solveRiddle(10,20,19);
+        Assertions.assertEquals(solution.getSteps(), 0);
     }
 }

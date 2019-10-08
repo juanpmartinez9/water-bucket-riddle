@@ -1,11 +1,24 @@
 package com.waterbuckettest.core;
 
-public final class NoSolution implements Solution {
+import java.util.Collection;
+import java.util.Collections;
+
+public final class NoSolution implements RiddleSolution {
 
     private String errorMessage;
 
     NoSolution(String errorMessage) {
-        this.errorMessage = errorMessage;
+        this.errorMessage = "No solution. " + errorMessage;
+    }
+
+    @Override
+    public Collection<Action> getActions() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Collection<BucketState> getStates() {
+        return Collections.emptyList();
     }
 
     @Override

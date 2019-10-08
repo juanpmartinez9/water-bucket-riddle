@@ -1,17 +1,19 @@
-package com.waterbuckettest.cli;
+package com.waterbuckettest.display.cli;
 
 import com.waterbuckettest.core.*;
+import com.waterbuckettest.display.DisplayLauncher;
 
 import java.util.Iterator;
 import java.util.Scanner;
 
-class Cli {
+public class Cli implements DisplayLauncher {
 
-    Cli(){
+    @Override
+    public void launch() {
         welcome();
         printInstructions();
         RiddleEntry parameters = inputParameters();
-        Solution solution = new Solver().solveRiddle(parameters.getBucket1(),parameters.getBucket2(),parameters.getMeasure());
+        RiddleSolution solution = new Solver().solveRiddle(parameters.getBucket1(), parameters.getBucket2(),parameters.getMeasure());
         displaySolution(solution);
         reRun();
     }
@@ -59,17 +61,17 @@ class Cli {
         }
     }
 
-    private void displaySolution(Solution solution){
+    private void displaySolution(RiddleSolution solution){
 
-        System.out.println("\n---- Solution ----");
         if(solution.getSteps() == 0)
             System.out.println(((NoSolution) solution).getErrorMessage());
         else {
-            Iterator<String> actionsIterator = ((WaterBucketRiddleSolution)solution).getActions().iterator();
-            Iterator<BucketState> statesIterator = ((WaterBucketRiddleSolution)solution).getStates().iterator();
+            System.out.println(CliConstants.SOLUTION);
+            Iterator<Action> actionsIterator = solution.getActions().iterator();
+            Iterator<BucketState> statesIterator = solution.getStates().iterator();
             BucketState bs;
             while (actionsIterator.hasNext() && statesIterator.hasNext()) {
-                System.out.print(actionsIterator.next() + " -> ");
+                System.out.print(actionsIterator.next().getDisplayName() + " -> ");
                 bs = statesIterator.next();
                 System.out.println("(" + bs.getBucketX() + "," + bs.getBucketY() + ")");
             }
@@ -85,7 +87,7 @@ class Cli {
         while (true) {
             String line = sc.nextLine();
             if (line.equals("y")) {
-                new Cli();
+                launch();
             }
             if(line.equals("n")){
                 System.out.print("Bye!!!");
