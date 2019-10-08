@@ -41,5 +41,5 @@ The output on the screen has to demonstrates each step (fill, dump, transfer, et
 $> ./run.sh
 ```
 
-Note: you will need docker [docker](https://www.docker.com/) to run waterBucketRiddle app.
+Note: you will need [docker](https://www.docker.com/) to run waterBucketRiddle app.
 
