@@ -20,7 +20,9 @@ water.
 ## Limitations
 
 ● No partial measurement. Each jug can be empty or full.
+
 ● Actions allowed: Fill, Empty, Transfer.
+
 ● Use one of the following programming languages: Scala, Java, Nodejs, Go
 
 ## Deliverables
@@ -31,9 +33,13 @@ option, a public link to the application source code or a zip archive is also ac
 ## Evaluation Criterias
 
 ● Functionality
+
 ● Efficiency (Time, Space)
+
 ● Code Quality / Design / Patterns
+
 ● Testability
+
 ● UI/UX design
 
 ## How to run the application
