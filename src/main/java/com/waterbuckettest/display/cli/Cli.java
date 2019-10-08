@@ -71,9 +71,9 @@ public class Cli implements DisplayLauncher {
             Iterator<BucketState> statesIterator = solution.getStates().iterator();
             BucketState bs;
             while (actionsIterator.hasNext() && statesIterator.hasNext()) {
-                System.out.print(actionsIterator.next().getDisplayName() + " -> ");
+                System.out.format("%-13s", actionsIterator.next().getDisplayName());
                 bs = statesIterator.next();
-                System.out.println("(" + bs.getBucketX() + "," + bs.getBucketY() + ")");
+                System.out.println(" -> (" + bs.getBucketX() + "," + bs.getBucketY() + ")");
             }
         }
         System.out.println();
@@ -91,7 +91,7 @@ public class Cli implements DisplayLauncher {
                 return;
             }
             if(line.equals("n")){
-                System.out.print("Bye!!!");
+                System.out.println(CliConstants.BYE);
                 return;
             }
             System.out.print(CliConstants.RUN_AGAIN);

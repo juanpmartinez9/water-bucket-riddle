@@ -19,4 +19,6 @@ final class CliConstants {
     static final String AMOUNT_Z = "Enter amount Z of gallons: \n";
 
     static final String SOLUTION = "\n---- Solution ----\n";
+
+    static final String BYE = "\nBye!!!";
 }
