@@ -2,6 +2,7 @@ package com.waterbuckettest.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 public class Solution implements RiddleSolution {
 
@@ -20,12 +21,12 @@ public class Solution implements RiddleSolution {
 
     @Override
     public Collection<Action> getActions() {
-        return actions;
+        return Collections.unmodifiableCollection(actions);
     }
 
     @Override
     public Collection<BucketState> getStates() {
-        return states;
+        return Collections.unmodifiableCollection(states);
     }
 
     @Override
@@ -34,10 +35,10 @@ public class Solution implements RiddleSolution {
     }
 
     void addStep(Action action, int from, int to) {
-        getActions().add(action);
+        actions.add(action);
         BucketState bs = new BucketState();
         bs.setBucketX(to);
         bs.setBucketY(from);
-        getStates().add(bs);
+        states.add(bs);
     }
 }
