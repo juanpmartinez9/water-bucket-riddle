@@ -88,10 +88,11 @@ public class Cli implements DisplayLauncher {
             String line = sc.nextLine();
             if (line.equals("y")) {
                 launch();
+                return;
             }
             if(line.equals("n")){
                 System.out.print("Bye!!!");
-                break;
+                return;
             }
             System.out.print(CliConstants.RUN_AGAIN);
         }

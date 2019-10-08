@@ -37,8 +37,9 @@ The output on the screen has to demonstrates each step (fill, dump, transfer, et
 
 ## How to run the application
 
-Use docker [docker](https://www.docker.com/) to run waterBucketApp.
-
 ```bash
-docker java -jar waterBucketApp.jar
+$> ./run.sh
 ```
+
+Note: you will need docker [docker](https://www.docker.com/) to run waterBucketRiddle app.
+
