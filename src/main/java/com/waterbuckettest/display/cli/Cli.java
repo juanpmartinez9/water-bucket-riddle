@@ -57,7 +57,7 @@ public class Cli implements DisplayLauncher {
                     return n;
                 }
             } catch (NumberFormatException ignored) {}
-            System.out.println(CliConstants.RE_ENTER);
+            System.out.print(CliConstants.RE_ENTER);
         }
     }
 

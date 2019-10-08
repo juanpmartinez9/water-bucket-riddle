@@ -8,7 +8,7 @@ public final class NoSolution implements RiddleSolution {
     private String errorMessage;
 
     NoSolution(String errorMessage) {
-        this.errorMessage = "No solution. " + errorMessage;
+        this.errorMessage = "\nNo solution. " + errorMessage;
     }
 
     @Override
