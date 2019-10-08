@@ -5,35 +5,36 @@ Build an application that solves the Water Bucket Riddle for dynamic inputs (Buc
 
 ## Overview
 
-There are 2 buckets. Irregular shape, can’t guess at partial capacity.
-
-Large Bucket = 5 Gallons
-
-Small Bucket = 3 Gallons
-
-Target is 4 gallons into 5 gallon bucket
-
-There is a lake with unlimited water supply to fill the bucket.
-
-## Limitations
-
-a)       Fill empty bucket from lake in full. 5 gallon empty bucket can be filled with 5 gallons from lake. Can’t fill 2 gallons into 5 gallon bucket from lake.
-
-b)      All water must be dump, cannot pour out “just a bit” or “half”.
-
-c)      Can transfer from one bucket to another until capacity.
+Build an application that solves the Water Jug Riddle for dynamic inputs (X, Y, Z). The simulation
+should have a UI to display state changes for each state for each jug (Empty, Full or Partially Full).
+You have an X-gallon and a Y-gallon jug that you can fill from a lake. (Assume lake has unlimited
+amount of water.) By using only an X-gallon and Y-gallon jug (no third jug), measure Z gallons of
+water.
 
 ## Goals
 
-App should find a way to get to 4 gallons in large bucket.
+1. Measure Z gallons of water in the most efficient way.
+2. Build a UI where a user can enter any input for X, Y, Z and see the solution.
+3. If no solution, display “No Solution”.
 
-The program should accept size value for large bucket, small bucket, and target size.
+## Limitations
 
-If values are invalid, such as letters or negative numbers or 0s, it should not crash.
+● No partial measurement. Each jug can be empty or full.
+● Actions allowed: Fill, Empty, Transfer.
+● Use one of the following programming languages: Scala, Java, Nodejs, Go
 
-If values cannot be solved, such as large size of 8 small size of 2 and target 3, the app should state that.
+## Deliverables
 
-The output on the screen has to demonstrates each step (fill, dump, transfer, etc.) until the target is achieved.
+The application source code should be on Github and a link should be provided. If this is not an
+option, a public link to the application source code or a zip archive is also acceptable.
+
+## Evaluation Criterias
+
+● Functionality
+● Efficiency (Time, Space)
+● Code Quality / Design / Patterns
+● Testability
+● UI/UX design
 
 ## How to run the application
 
